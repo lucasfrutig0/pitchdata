@@ -1,0 +1,103 @@
+---
+import Footer from '@components/Footer.astro'
+import Sidebar from '@components/Sidebar.astro'
+import Topbar from '@components/Topbar.astro'
+import { ViewTransitions } from 'astro:transitions'
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body
+    class='min-h-screen antialiased overflow-x-hidden dark:text-ivory dark:bg-dark bg-white'
+  >
+    <div
+      class='h-screen md:grid grid-cols-[200px_minmax(900px,_1fr)] overflow-x-hidden'
+    >
+      <div
+        id='sidebar'
+        class='z-20 -translate-x-full md:translate-x-0 transition-transform duration-300 shadow-md w-full relative border-r border-zinc-100 dark:border-zinc-800'
+      >
+        <Sidebar />
+      </div>
+      <div class='h-full flex flex-col gap-2'>
+        <Topbar />
+        <main class='flex-1 mx-4'>
+          <slot />
+        </main>
+
+        <Footer />
+      </div>
+    </div>
+    <style is:global>
+      :root {
+        --accent: 136, 58, 234;
+        --accent-light: 224, 204, 250;
+        --accent-dark: 49, 10, 101;
+        --accent-gradient: linear-gradient(
+          45deg,
+          rgb(var(--accent)),
+          rgb(var(--accent-light)) 30%,
+          white 60%
+        );
+      }
+      html {
+        font-family: system-ui, sans-serif;
+        background: #13151a;
+        background-size: 224px;
+      }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+    </style>
+    <script is:inline>
+      function setDarkMode(document) {
+        if (
+          localStorage.theme === 'dark' ||
+          (!('theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+
+        // Whenever the user explicitly chooses light mode
+        localStorage.theme = 'light'
+
+        // Whenever the user explicitly chooses dark mode
+        localStorage.theme = 'dark'
+
+        // Whenever the user explicitly chooses to respect the OS preference
+        localStorage.removeItem('theme')
+      }
+      setDarkMode(document)
+
+      document.addEventListener('astro:before-swap', (ev) => {
+        // Pass the incoming document to set the theme on it
+        setDarkMode(ev.newDocument)
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+import Logo from './Logo.astro'
+import OpenSidebarButton from './OpenSidebarButton.astro'
+import ThemeButton from './ThemeButton.astro'
+---
+
+<header
+  class='border-b border-zinc-100 dark:border-zinc-800 sticky top-0 left-0'
+>
+  <div class='px-4 flex justify-between md:justify-end items-center h-14'>
+    <div class='md:hidden'>
+      <OpenSidebarButton />
+    </div>
+    <div>
+      <ThemeButton />
+    </div>
+  </div>
+</header>
