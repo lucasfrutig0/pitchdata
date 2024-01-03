@@ -1,23 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": "/home/lucas/workspace/pitchdata",
+    "baseUrl": "./",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@services/*": [
-        "src/services/*"
-      ],
-      "@icons/*": [
-        "src/icons/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@services/*": ["src/services/*"],
+      "@icons/*": ["src/icons/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
