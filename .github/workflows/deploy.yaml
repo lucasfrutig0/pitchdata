@@ -1,14 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -26,10 +21,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-actions@v2
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          email: ${{ secrets.CF_ACCOUNT_EMAIL }}
+          siteName: pitchdata
+          productionBranch: main
