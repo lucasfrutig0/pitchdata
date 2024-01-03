@@ -17,7 +17,7 @@ export function Select() {
     (value: typeof selectedPerson) => {
       localStorage.setItem('league', JSON.stringify(value))
       setSelectedPerson(value)
-      window.location.pathname = '/pitchdata/league/' + value.slug
+      window.location.pathname = 'league/' + value.slug
     },
     [setSelectedPerson]
   )
