@@ -1,6 +1,6 @@
 ---
-import Logo from './Logo.astro'
 import OpenSidebarButton from './OpenSidebarButton.astro'
+import { Select } from './Select'
 import ThemeButton from './ThemeButton.astro'
 ---
 
@@ -11,7 +11,8 @@ import ThemeButton from './ThemeButton.astro'
     <div class='md:hidden'>
       <OpenSidebarButton />
     </div>
-    <div>
+    <div class='flex gap-2 items-center justify-center'>
+      <Select client:only='react' />
       <ThemeButton />
     </div>
   </div>

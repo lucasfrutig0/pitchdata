@@ -1,0 +1,19 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { leagues } from '@utils/data/leagues'
+
+const { slug } = Astro.params
+console.log('slug', slug)
+console.log(
+  'page-slug',
+  leagues.map((page) => page.slug)
+)
+const page = leagues.find((page) => page.slug === slug)
+console.log('page', page)
+if (!page) return Astro.redirect('/404')
+const { name, id } = page
+---
+
+<Layout title={name}>
+  <p>{id} - {name}</p>
+</Layout>
