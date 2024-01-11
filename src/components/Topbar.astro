@@ -1,19 +1,28 @@
 ---
+import { leagues } from '@/utils/data/leagues'
 import OpenSidebarButton from './OpenSidebarButton.astro'
 import { Select } from './Select'
+
 import ThemeButton from './ThemeButton.astro'
+import { Sidebar } from './Sidebar'
+const { slug } = Astro.params
+const leagueName = slug?.replace('-', ' ').toUpperCase()
 ---
 
-<header
-  class='border-b border-zinc-100 dark:border-zinc-800 sticky top-0 left-0'
->
-  <div class='px-4 flex justify-between md:justify-end items-center h-14'>
-    <div class='md:hidden'>
-      <OpenSidebarButton />
-    </div>
-    <div class='flex gap-2 items-center justify-center'>
-      <Select client:only='react' />
-      <ThemeButton />
+<header class='sticky top-0 left-0 backdrop-blur-md z-10'>
+  <div class='px-6 w-full flex items-center justify-between'>
+    <Sidebar client:load />
+
+    <span
+      class='px-6 w-full text-sm md:text-lg font-bold text-dark dark:text-ivory'
+    >
+      {leagueName}
+    </span>
+    <div class='w-full flex justify-between md:justify-end items-center h-14'>
+      <div class='flex gap-x-4 items-center justify-center'>
+        <Select client:only='react' />
+        <ThemeButton />
+      </div>
     </div>
   </div>
 </header>

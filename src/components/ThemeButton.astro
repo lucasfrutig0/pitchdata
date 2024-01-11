@@ -1,11 +1,18 @@
-<button id='themeToggle' class='dark:bg-forest-dark'>Change</button>
+<button id='themeToggle' class='dark:bg-forest-dark'></button>
 
 <script>
   const btn = document.getElementById('themeToggle')
+
   btn?.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark')
     localStorage.theme = document.documentElement.classList.contains('dark')
       ? 'dark'
       : 'light'
+    btn.innerText = localStorage.theme === 'dark' ? '☀️' : '🌙'
   })
+</script>
+
+<script is:inline>
+  document.getElementById('themeToggle').innerHTML =
+    localStorage.theme === 'dark' ? '☀️' : '🌙'
 </script>

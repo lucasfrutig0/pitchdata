@@ -1,7 +1,6 @@
 ---
-import Footer from '@components/Footer.astro'
-import Sidebar from '@components/Sidebar.astro'
-import Topbar from '@components/Topbar.astro'
+import Footer from '@/components/Footer.astro'
+import Topbar from '@/components/Topbar.astro'
 import { ViewTransitions } from 'astro:transitions'
 interface Props {
   title: string
@@ -22,26 +21,17 @@ const { title } = Astro.props
     <ViewTransitions />
   </head>
   <body
-    class='min-h-screen antialiased overflow-x-hidden dark:text-ivory dark:bg-dark bg-white'
+    class='relative h-dvh antialiased overflow-x-hidden dark:text-ivory dark:bg-dark bg-white'
   >
-    <div
-      class='h-screen md:grid grid-cols-[200px_minmax(900px,_1fr)] overflow-x-hidden'
-    >
-      <div
-        id='sidebar'
-        class='z-20 -translate-x-full md:translate-x-0 transition-transform duration-300 shadow-md w-full relative border-r border-zinc-100 dark:border-zinc-800'
-      >
-        <Sidebar />
-      </div>
-      <div class='h-full flex flex-col gap-2'>
-        <Topbar />
-        <main class='flex-1 mx-4'>
-          <slot />
-        </main>
+    <div class='h-full flex flex-col gap-2'>
+      <Topbar />
+      <main class='flex-1 mx-4'>
+        <slot />
+      </main>
 
-        <Footer />
-      </div>
+      <Footer />
     </div>
+
     <style is:global>
       :root {
         --accent: 136, 58, 234;
@@ -82,15 +72,6 @@ const { title } = Astro.props
         } else {
           document.documentElement.classList.remove('dark')
         }
-
-        // Whenever the user explicitly chooses light mode
-        localStorage.theme = 'light'
-
-        // Whenever the user explicitly chooses dark mode
-        localStorage.theme = 'dark'
-
-        // Whenever the user explicitly chooses to respect the OS preference
-        localStorage.removeItem('theme')
       }
       setDarkMode(document)
 
