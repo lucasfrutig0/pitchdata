@@ -2,12 +2,11 @@
 import { Image } from 'astro:assets'
 interface Props {
   title: string
-  body: string
   href: string
   srcImage: string
 }
 
-const { href, title, body, srcImage } = Astro.props
+const { href, title, srcImage } = Astro.props
 ---
 
 <a
