@@ -7,7 +7,7 @@ const { slug } = Astro.params
 
 const page = leagues.find((page) => page.slug === slug)
 if (!page) return Astro.redirect('/404')
-const { name, id } = page
+const { name } = page
 ---
 
 <Layout title={name}>
