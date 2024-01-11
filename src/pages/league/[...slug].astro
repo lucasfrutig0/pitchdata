@@ -1,19 +1,50 @@
 ---
-import Layout from '@layouts/Layout.astro'
-import { leagues } from '@utils/data/leagues'
+import Layout from '@/layouts/Layout.astro'
+import { leagues } from '@/utils/data/leagues'
+import '@/styles/globals.css'
 
 const { slug } = Astro.params
-console.log('slug', slug)
-console.log(
-  'page-slug',
-  leagues.map((page) => page.slug)
-)
+
 const page = leagues.find((page) => page.slug === slug)
-console.log('page', page)
 if (!page) return Astro.redirect('/404')
-const { name, id } = page
+const { name } = page
 ---
 
 <Layout title={name}>
-  <p>{id} - {name}</p>
+  <div class='h-full'>
+    <div
+      class='grid grid-cols-2 grid-rows-4 md:grid-cols-4 gap-2 md:gap-4 h-screen'
+    >
+      <div
+        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-2 md:col-span-3 row-span-1 md:row-span-3'
+      >
+        <span>01</span>
+      </div>
+      <div
+        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-full md:col-span-1 md:row-span-3'
+      >
+        <span>02</span>
+      </div>
+      <div
+        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-full md:col-span-1'
+      >
+        <span>03</span>
+      </div>
+      <div
+        class='bg-zinc-50 dark:bg-accent-dark rounded-xl col-span-1 px-6 py-6'
+      >
+        <span>04</span>
+      </div>
+      <div
+        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 md:col-span-2'
+      >
+        <span>05</span>
+      </div>
+      <!-- <div
+        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-1'
+      >
+        <span>06</span>
+      </div> -->
+    </div>
+  </div>
 </Layout>
