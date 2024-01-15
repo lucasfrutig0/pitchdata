@@ -4,6 +4,8 @@ import Layout from '@/layouts/Layout.astro'
 import { leagues } from '@/utils/data/leagues'
 import '@/styles/globals.css'
 import { LeagueTable } from '@/components/TableLeague'
+import { UpcomingFixtures } from '@/components/UpcomingFixtures'
+import { TopCard } from '@/components/TopCards'
 
 export const prerender = true
 
@@ -18,23 +20,23 @@ const { name } = Astro.props
 ---
 
 <Layout title={name as string}>
-  <div class='flex justify-between items-center flex-wrap'>
-    <article><h1>TOP ASSIST</h1></article>
-    <article>
-      <h1>TOP GOALS</h1>
-    </article>
-    <article>
-      <h1>TOP TRACKLES</h1>
-    </article>
+  <div
+    class='flex justify-center md:justify-between items-center flex-wrap gap-4'
+  >
+    <TopCard title='Top Goals' />
+
+    <TopCard title='Top Assist' />
+
+    <TopCard title='Top Red Cards' />
   </div>
 
-  <div class='grid md:grid-cols-3 gap-4'>
+  <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
     <section class='md:col-span-2'>
-      <LeagueTable client:only />
+      <LeagueTable client:load />
     </section>
 
     <article class='md:col-span-1'>
-      <h1>UPCOMING MATCHS</h1>
+      <UpcomingFixtures client:load />
     </article>
   </div>
 </Layout>
