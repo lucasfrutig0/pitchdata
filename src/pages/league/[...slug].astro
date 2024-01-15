@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro'
 import Layout from '@/layouts/Layout.astro'
 import { leagues } from '@/utils/data/leagues'
 import '@/styles/globals.css'
+import { LeagueTable } from '@/components/TableLeague'
 
 export const prerender = true
 
@@ -17,7 +18,7 @@ const { name } = Astro.props
 ---
 
 <Layout title={name as string}>
-  <section class='flex justify-between items-center flex-wrap'>
+  <div class='flex justify-between items-center flex-wrap'>
     <article><h1>TOP ASSIST</h1></article>
     <article>
       <h1>TOP GOALS</h1>
@@ -25,15 +26,15 @@ const { name } = Astro.props
     <article>
       <h1>TOP TRACKLES</h1>
     </article>
-  </section>
+  </div>
 
-  <section class='grid md:grid-cols-3 gap-4 grid-rows-3'>
-    <article class='md:col-span-2 bg-gray-300'>
-      <h1>TABELA</h1>
-    </article>
+  <div class='grid md:grid-cols-3 gap-4'>
+    <section class='md:col-span-2'>
+      <LeagueTable client:only />
+    </section>
 
     <article class='md:col-span-1'>
       <h1>UPCOMING MATCHS</h1>
     </article>
-  </section>
+  </div>
 </Layout>
