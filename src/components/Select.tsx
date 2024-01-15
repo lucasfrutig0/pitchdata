@@ -3,6 +3,7 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Listbox, Transition } from '@headlessui/react'
 import { leagues } from '@/utils/data/leagues'
 import type { League } from '@/@types/league'
+import { Loader } from './Loader'
 
 interface LoadLeague {
   league: League
@@ -40,6 +41,10 @@ export function Select() {
     [setSelectedLeague]
   )
 
+  if (!data) {
+    return <Loader />
+  }
+
   return (
     <Listbox
       value={selectedLeague as League}
@@ -53,12 +58,12 @@ export function Select() {
             </Listbox.Label>
 
             <div className='relative mt-2'>
-              <Listbox.Button className='relative w-full cursor-default dark:bg-accent-dark bg-accent rounded-md py-1 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-esmerald sm:text-sm sm:leading-6'>
+              <Listbox.Button className='relative w-full cursor-default dark:bg-soft-dark bg-accent rounded-md py-1 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-esmerald sm:text-sm sm:leading-6'>
                 <span className='flex items-center'>
                   <img
                     src={selectedLeague?.logo}
                     alt={selectedLeague?.name}
-                    className='h-5 w-5 flex-shrink-0 rounded-full'
+                    className='h-5 w-5 flex-shrink-0 rounded-full bg-slate-50'
                     width={32}
                     height={32}
                   />
@@ -104,7 +109,7 @@ export function Select() {
                               <img
                                 src={league.logo}
                                 alt={league.name}
-                                className='h-5 w-5 flex-shrink-0 rounded-full'
+                                className='h-5 w-5 flex-shrink-0 rounded-full bg-slate-50'
                                 width={32}
                                 height={32}
                               />

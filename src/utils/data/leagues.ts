@@ -1,6 +1,6 @@
 export const leagues = [
   {
-    id: 1,
+    id: 39,
     name: 'Premier League',
     code: 'PL',
     slug: 'premier-league',
