@@ -24,10 +24,7 @@ export function TableBody() {
                   : ''
             }`}
           >
-            <td className='text-center p-4'>
-              {team.position}{' '}
-              {team.status == 'some' && <span className='text-red-500'>*</span>}
-            </td>
+            <td className='text-center p-4'>{team.position} </td>
             <td key={team.team} colSpan={4}>
               <div className='flex items-center text-left gap-x-2 flex-shrink-0'>
                 <img

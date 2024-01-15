@@ -12,5 +12,4 @@ export type Standings = {
   pts: number
   zone: string | null
   form: string
-  status: string
 }
