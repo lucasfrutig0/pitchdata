@@ -1,29 +1,50 @@
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment, useCallback, useEffect, useState } from 'react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Listbox, Transition } from '@headlessui/react'
 import { leagues } from '@/utils/data/leagues'
+import type { League } from '@/@types/league'
+
+interface LoadLeague {
+  league: League
+}
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+const loadLeague = async (): Promise<LoadLeague | undefined> => {
+  try {
+    const response = await fetch(
+      '/api/leagues/' + window.location.pathname.split('/')[2]
+    )
+    // network error in the 4xx–5xx range
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`)
+    }
+    // use response here if we didn't throw above
+    return await response.json()
+  } catch (error) {
+    console.error(error)
+  }
+}
+const data = await loadLeague()
+
 export function Select() {
-  const [selectedPerson, setSelectedPerson] = useState(
-    JSON.parse(localStorage.getItem('league') as string) || leagues[0]
-  )
-  console.log(selectedPerson)
+  const [selectedLeague, setSelectedLeague] = useState(data?.league)
 
   const handleChange = useCallback(
-    (value: typeof selectedPerson) => {
-      localStorage.setItem('league', JSON.stringify(value))
-      setSelectedPerson(value)
-      window.location.pathname = 'league/' + value.slug
+    (value: typeof selectedLeague) => {
+      setSelectedLeague(value)
+      window.location.pathname = ('league/' + value?.slug) as string
     },
-    [setSelectedPerson]
+    [setSelectedLeague]
   )
 
   return (
-    <Listbox value={selectedPerson} onChange={(value) => handleChange(value)}>
+    <Listbox
+      value={selectedLeague as League}
+      onChange={(value) => handleChange(value)}
+    >
       {({ open }) => (
         <>
           <div className='flex items-center gap-2'>
@@ -35,14 +56,14 @@ export function Select() {
               <Listbox.Button className='relative w-full cursor-default dark:bg-accent-dark bg-accent rounded-md py-1 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-esmerald sm:text-sm sm:leading-6'>
                 <span className='flex items-center'>
                   <img
-                    src={selectedPerson.logo}
-                    alt={selectedPerson.name}
+                    src={selectedLeague?.logo}
+                    alt={selectedLeague?.name}
                     className='h-5 w-5 flex-shrink-0 rounded-full'
                     width={32}
                     height={32}
                   />
                   <span className='ml-3 block truncate'>
-                    {selectedPerson.name}
+                    {selectedLeague?.name}
                   </span>
                 </span>
                 <span className='pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2'>

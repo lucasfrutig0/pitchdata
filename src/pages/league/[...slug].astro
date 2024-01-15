@@ -1,50 +1,39 @@
 ---
+import type { GetStaticPaths } from 'astro'
 import Layout from '@/layouts/Layout.astro'
 import { leagues } from '@/utils/data/leagues'
 import '@/styles/globals.css'
 
-const { slug } = Astro.params
+export const prerender = true
 
-const page = leagues.find((page) => page.slug === slug)
-if (!page) return Astro.redirect('/404')
-const { name } = page
+export const getStaticPaths: GetStaticPaths = async () => {
+  return leagues.map((league) => ({
+    params: { slug: league.slug },
+    props: { name: league.name }
+  }))
+}
+
+const { name } = Astro.props
 ---
 
-<Layout title={name}>
-  <div class='h-full'>
-    <div
-      class='grid grid-cols-2 grid-rows-4 md:grid-cols-4 gap-2 md:gap-4 h-screen'
-    >
-      <div
-        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-2 md:col-span-3 row-span-1 md:row-span-3'
-      >
-        <span>01</span>
-      </div>
-      <div
-        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-full md:col-span-1 md:row-span-3'
-      >
-        <span>02</span>
-      </div>
-      <div
-        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-full md:col-span-1'
-      >
-        <span>03</span>
-      </div>
-      <div
-        class='bg-zinc-50 dark:bg-accent-dark rounded-xl col-span-1 px-6 py-6'
-      >
-        <span>04</span>
-      </div>
-      <div
-        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 md:col-span-2'
-      >
-        <span>05</span>
-      </div>
-      <!-- <div
-        class='bg-zinc-50 dark:bg-accent-dark rounded-xl px-6 py-6 col-span-1'
-      >
-        <span>06</span>
-      </div> -->
-    </div>
-  </div>
+<Layout title={name as string}>
+  <section class='flex justify-between items-center flex-wrap'>
+    <article><h1>TOP ASSIST</h1></article>
+    <article>
+      <h1>TOP GOALS</h1>
+    </article>
+    <article>
+      <h1>TOP TRACKLES</h1>
+    </article>
+  </section>
+
+  <section class='grid md:grid-cols-3 gap-4 grid-rows-3'>
+    <article class='md:col-span-2 bg-gray-300'>
+      <h1>TABELA</h1>
+    </article>
+
+    <article class='md:col-span-1'>
+      <h1>UPCOMING MATCHS</h1>
+    </article>
+  </section>
 </Layout>
