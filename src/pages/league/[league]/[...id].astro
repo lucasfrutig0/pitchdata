@@ -1,33 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-const { league, id } = Astro.params
----
-
-<Layout title='coco'>
-  <h1>{league}: {id}</h1>
-</Layout>
-<!-- ---
 import type { GetStaticPaths } from 'astro'
-import Layout from '@/layouts/Layout.astro'
 import { leagues } from '@/utils/data/leagues'
 import '@/styles/globals.css'
 import { LeagueTable } from '@/components/TableLeague'
 import { UpcomingFixtures } from '@/components/UpcomingFixtures'
 import TopCard from '@/components/TopCards/TopCard.astro'
-
-export const prerender = true
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return leagues.map((league) => ({
-    params: { slug: league.slug },
-    props: { name: league.name, slug: league.slug }
-  }))
-}
-
-const { name, slug } = Astro.props
+const { league } = Astro.params
 ---
 
-<Layout title={name as string}>
+<Layout title={league as string}>
   <div
     class='flex justify-center md:justify-between items-center flex-wrap gap-4'
   >
@@ -35,7 +17,7 @@ const { name, slug } = Astro.props
       team='Manchester City'
       pos='ST'
       name='Earling Haaland'
-      link={`/league/${slug}/manchester-city/player/1100`}
+      link={`/league/${league}/manchester-city/player/1100`}
       title='Top Goals'
       src='https://media.api-sports.io/football/players/1100.png'
     />
@@ -43,7 +25,7 @@ const { name, slug } = Astro.props
     <TopCard
       team='Manchester City'
       pos='ST'
-      link={`/league/${slug}/manchester-city/player/1100`}
+      link={`/league/${league}/manchester-city/player/1100`}
       name='Earling Haaland'
       title='Top Assist'
       src='https://media.api-sports.io/football/players/1100.png'
@@ -52,7 +34,7 @@ const { name, slug } = Astro.props
     <TopCard
       team='Manchester City'
       pos='ST'
-      link={`/league/${slug}/manchester-city/player/1100`}
+      link={`/league/${league}/manchester-city/player/1100`}
       name='Earling Haaland'
       title='Top Red Cards'
       src='https://media.api-sports.io/football/players/1100.png'
@@ -71,4 +53,4 @@ const { name, slug } = Astro.props
       <UpcomingFixtures client:load />
     </article>
   </div>
-</Layout> -->
+</Layout>
