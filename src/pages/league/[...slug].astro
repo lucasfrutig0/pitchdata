@@ -5,7 +5,7 @@ import { leagues } from '@/utils/data/leagues'
 import '@/styles/globals.css'
 import { LeagueTable } from '@/components/TableLeague'
 import { UpcomingFixtures } from '@/components/UpcomingFixtures'
-import { TopCard } from '@/components/TopCards'
+import TopCard from '@/components/TopCards/TopCard.astro'
 
 export const prerender = true
 
@@ -23,11 +23,20 @@ const { name } = Astro.props
   <div
     class='flex justify-center md:justify-between items-center flex-wrap gap-4'
   >
-    <TopCard title='Top Goals' />
+    <TopCard
+      title='Top Goals'
+      src='https://media.api-sports.io/football/players/1100.png'
+    />
 
-    <TopCard title='Top Assist' />
+    <TopCard
+      title='Top Assist'
+      src='https://media.api-sports.io/football/players/1100.png'
+    />
 
-    <TopCard title='Top Red Cards' />
+    <TopCard
+      title='Top Red Cards'
+      src='https://media.api-sports.io/football/players/1100.png'
+    />
   </div>
 
   <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
