@@ -1,10 +1,14 @@
 ---
 interface Props {
+  team: string
   title: string
   src?: string
+  name: string
+  link: string
+  pos: string
 }
 
-const { title, src } = Astro.props
+const { team, title, src, link, name, pos } = Astro.props
 ---
 
 <article
@@ -15,9 +19,9 @@ const { title, src } = Astro.props
   <div class='flex gap-x-4 gap-y-2'>
     <img src={src} alt={title} class='w-20 h-20 flex-shrink-0' />
     <div class='flex-1 flex flex-col'>
-      <span class='text-lg font-bold leading-6'>Earling Haaland</span>
-      <span class='text-md font-semibold'>ST</span>
-      <span>Manchester City</span>
+      <a class='text-lg font-bold leading-6' href={link}>{name}</a>
+      <span class='text-md font-semibold'>{pos}</span>
+      <span>{team}</span>
       <span class='self-end text-5xl font-bold'>14</span>
     </div>
   </div>

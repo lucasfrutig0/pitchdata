@@ -1,3 +1,14 @@
+---
+import Footer from '@/components/Footer.astro'
+import Topbar from '@/components/Topbar.astro'
+import { ViewTransitions } from 'astro:transitions'
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
 <!doctype html>
 <html lang='en'>
   <head>
@@ -6,33 +17,133 @@
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
-    <title>Welcome to Pitch Data</title>
+    <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body
-    class='min-h-screen antialiased overflow-x-hidden dark:text-ivory dark:bg-dark bg-white'
+    class='min-h-screen relative antialiased overflow-x-hidden text-soft-dark dark:text-ivory dark:bg-dark bg-white'
   >
-    <main class='h-dvh grid place-items-center gap-2'>
-      <slot />
-    </main>
+    <div class='flex flex-col gap-2'>
+      <Topbar />
+      <main class='flex-1 mx-4 space-y-4'>
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+
+    <style is:global>
+      :root {
+        --accent: 136, 58, 234;
+        --accent-light: 224, 204, 250;
+        --accent-dark: 49, 10, 101;
+        --accent-gradient: linear-gradient(
+          45deg,
+          rgb(var(--accent)),
+          rgb(var(--accent-light)) 30%,
+          white 60%
+        );
+      }
+      html {
+        font-family: system-ui, sans-serif;
+        background: #13151a;
+        background-size: 224px;
+      }
+      body {
+        min-height: 100svh;
+      }
+
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+
+      .loader {
+        width: 45px;
+        height: 40px;
+        background: linear-gradient(
+            #0000 calc(1 * 100% / 6),
+            #fff 0 calc(3 * 100% / 6),
+            #0000 0
+          ),
+          linear-gradient(
+            #0000 calc(2 * 100% / 6),
+            #fff 0 calc(4 * 100% / 6),
+            #0000 0
+          ),
+          linear-gradient(
+            #0000 calc(3 * 100% / 6),
+            #fff 0 calc(5 * 100% / 6),
+            #0000 0
+          );
+        background-size: 10px 400%;
+        background-repeat: no-repeat;
+        animation: matrix 1s infinite linear;
+      }
+
+      @keyframes matrix {
+        0% {
+          background-position:
+            0% 100%,
+            50% 100%,
+            100% 100%;
+        }
+
+        100% {
+          background-position:
+            0% 0%,
+            50% 0%,
+            100% 0%;
+        }
+      }
+
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #888;
+        border-radius: 5px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #000;
+        border-radius: 5px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+    <script is:inline>
+      function setDarkMode(document) {
+        if (
+          localStorage.theme === 'dark' ||
+          (!('theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      }
+      setDarkMode(document)
+
+      document.addEventListener('astro:before-swap', (ev) => {
+        // Pass the incoming document to set the theme on it
+        setDarkMode(ev.newDocument)
+      })
+    </script>
   </body>
 </html>
-
-<script is:inline>
-  function setDarkMode(document) {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }
-  setDarkMode(document)
-
-  document.addEventListener('astro:before-swap', (ev) => {
-    // Pass the incoming document to set the theme on it
-    setDarkMode(ev.newDocument)
-  })
-</script>
