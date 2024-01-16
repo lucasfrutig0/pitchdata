@@ -10,6 +10,7 @@ export function TableBody() {
   if (!standings) {
     return 'Loading ...'
   }
+
   return (
     <tbody>
       <>
