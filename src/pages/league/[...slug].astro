@@ -31,8 +31,11 @@ const { name } = Astro.props
   </div>
 
   <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
-    <section class='md:col-span-2'>
+    <section class='md:col-span-2 space-y-4'>
       <LeagueTable client:load />
+      <p class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'>
+        BOSTA
+      </p>
     </section>
 
     <article class='md:col-span-1'>

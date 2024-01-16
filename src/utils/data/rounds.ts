@@ -1,4 +1,4 @@
-export const rounds: Array<string> = [
+export const roundsData: Array<string> = [
   'Regular Season - 1',
   'Regular Season - 2',
   'Regular Season - 3',
