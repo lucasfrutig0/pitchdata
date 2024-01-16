@@ -12,11 +12,11 @@ export const prerender = true
 export const getStaticPaths: GetStaticPaths = async () => {
   return leagues.map((league) => ({
     params: { slug: league.slug },
-    props: { name: league.name }
+    props: { name: league.name, slug: league.slug }
   }))
 }
 
-const { name } = Astro.props
+const { name, slug } = Astro.props
 ---
 
 <Layout title={name as string}>
@@ -24,16 +24,28 @@ const { name } = Astro.props
     class='flex justify-center md:justify-between items-center flex-wrap gap-4'
   >
     <TopCard
+      team='Manchester City'
+      pos='ST'
+      name='Earling Haaland'
+      link={`/league/${slug}/manchester-city/player/1100`}
       title='Top Goals'
       src='https://media.api-sports.io/football/players/1100.png'
     />
 
     <TopCard
+      team='Manchester City'
+      pos='ST'
+      link={`/league/${slug}/manchester-city/player/1100`}
+      name='Earling Haaland'
       title='Top Assist'
       src='https://media.api-sports.io/football/players/1100.png'
     />
 
     <TopCard
+      team='Manchester City'
+      pos='ST'
+      link={`/league/${slug}/manchester-city/player/1100`}
+      name='Earling Haaland'
       title='Top Red Cards'
       src='https://media.api-sports.io/football/players/1100.png'
     />

@@ -1,4 +1,5 @@
 import { Fragment, useCallback, useEffect, useState } from 'react'
+import { navigate } from 'astro:transitions/client'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Listbox, Transition } from '@headlessui/react'
 import { leagues } from '@/utils/data/leagues'
@@ -35,8 +36,10 @@ export function Select() {
 
   const handleChange = useCallback(
     (value: typeof selectedLeague) => {
+      console.log('value', CSSNumericValue)
       setSelectedLeague(value)
-      window.location.pathname = ('league/' + value?.slug) as string
+      navigate(`/league/${value?.slug}`)
+      // window.location.pathname = ('league/' + value?.slug) as string
     },
     [setSelectedLeague]
   )
