@@ -1,4 +1,18 @@
 ---
+import Layout from '@/layouts/Layout.astro'
+const { league, id } = Astro.params
+---
+
+<Layout title='coco'>
+  <h1>{league}: {id}</h1>
+</Layout>
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+</style>
+
+<!-- ---
 import type { GetStaticPaths } from 'astro'
 import Layout from '@/layouts/Layout.astro'
 import { leagues } from '@/utils/data/leagues'
@@ -63,4 +77,4 @@ const { name, slug } = Astro.props
       <UpcomingFixtures client:load />
     </article>
   </div>
-</Layout>
+</Layout> -->
