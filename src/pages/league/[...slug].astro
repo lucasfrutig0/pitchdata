@@ -6,49 +6,72 @@ import '@/styles/globals.css'
 import { LeagueTable } from '@/components/TableLeague'
 import { UpcomingFixtures } from '@/components/UpcomingFixtures'
 import TopCard from '@/components/TopCards/TopCard.astro'
+import Topbar from '@/components/Topbar.astro'
+import Footer from '@/components/Footer.astro'
 
 export const prerender = true
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return leagues.map((league) => ({
     params: { slug: league.slug },
-    props: { name: league.name }
+    props: { name: league.name, slug: league.slug }
   }))
 }
 
-const { name } = Astro.props
+const { name, slug } = Astro.props
 ---
 
 <Layout title={name as string}>
-  <div
-    class='flex justify-center md:justify-between items-center flex-wrap gap-4'
-  >
-    <TopCard
-      title='Top Goals'
-      src='https://media.api-sports.io/football/players/1100.png'
-    />
+  <div class='flex flex-col gap-2'>
+    <Topbar />
+    <main class='flex-1 mx-4 space-y-4'>
+      <div
+        class='flex justify-center md:justify-between items-center flex-wrap gap-4'
+      >
+        <TopCard
+          team='Manchester City'
+          pos='ST'
+          name='Earling Haaland'
+          link={`/league/${slug}/manchester-city/player/1100`}
+          title='Top Goals'
+          src='https://media.api-sports.io/football/players/1100.png'
+        />
 
-    <TopCard
-      title='Top Assist'
-      src='https://media.api-sports.io/football/players/1100.png'
-    />
+        <TopCard
+          team='Manchester City'
+          pos='ST'
+          link={`/league/${slug}/manchester-city/player/1100`}
+          name='Earling Haaland'
+          title='Top Assist'
+          src='https://media.api-sports.io/football/players/1100.png'
+        />
 
-    <TopCard
-      title='Top Red Cards'
-      src='https://media.api-sports.io/football/players/1100.png'
-    />
-  </div>
+        <TopCard
+          team='Manchester City'
+          pos='ST'
+          link={`/league/${slug}/manchester-city/player/1100`}
+          name='Earling Haaland'
+          title='Top Red Cards'
+          src='https://media.api-sports.io/football/players/1100.png'
+        />
+      </div>
 
-  <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
-    <section class='md:col-span-2 space-y-4'>
-      <LeagueTable client:load />
-      <p class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'>
-        BOSTA
-      </p>
-    </section>
+      <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
+        <section class='md:col-span-2 space-y-4'>
+          <LeagueTable client:load />
+          <p
+            class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+          >
+            BOSTA
+          </p>
+        </section>
 
-    <article class='md:col-span-1'>
-      <UpcomingFixtures client:load />
-    </article>
+        <article class='md:col-span-1'>
+          <UpcomingFixtures client:load />
+        </article>
+      </div>
+    </main>
+
+    <Footer />
   </div>
 </Layout>
