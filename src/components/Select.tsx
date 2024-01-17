@@ -36,7 +36,6 @@ export function Select() {
 
   const handleChange = useCallback(
     (value: typeof selectedLeague) => {
-      console.log('value', CSSNumericValue)
       setSelectedLeague(value)
       navigate(`/league/${value?.slug}`)
       // window.location.pathname = ('league/' + value?.slug) as string

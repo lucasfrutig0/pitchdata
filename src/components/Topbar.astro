@@ -1,10 +1,10 @@
 ---
 import { Select } from './Select'
 
-import ThemeButton from './ThemeButton.astro'
 import { Sidebar } from './Sidebar'
-const { slug } = Astro.params
-const leagueName = slug?.replace('-', ' ').toUpperCase()
+import { SwitchThemeButton } from './SwitchThemeButton'
+const { league } = Astro.params
+const leagueName = league?.replace('-', ' ').toUpperCase()
 ---
 
 <header class='w-full sticky top-0 left-0 backdrop-blur-md z-10'>
@@ -18,8 +18,8 @@ const leagueName = slug?.replace('-', ' ').toUpperCase()
     </span>
     <div class='w-full flex justify-between md:justify-end items-center h-14'>
       <div class='flex gap-x-4 items-center justify-center'>
-        <Select client:only />
-        <ThemeButton />
+        <Select client:only transition:persist />
+        <SwitchThemeButton client:only />
       </div>
     </div>
   </div>
