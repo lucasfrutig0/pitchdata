@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets'
+interface Props {
+  bio?: {
+    name: string
+    id: string
+    age: string
+    nationality: string
+    position: string
+    team: string
+    photo: string
+  }
+}
+const { bio } = Astro.props
+---
+
+<section class='rounded-xl bg-zinc-100 dark:bg-accent-dark space-y-4'>
+  <div class='w-full flex gap-x-6 items-center px-6 py-4'>
+    <div class='self-start'>
+      <Image
+        src='https://media.api-sports.io/football/players/1100.png'
+        class={'w-20 h-20 flex-shrink-0 rounded-full object-cover drop-shadow-lg shadow-b'}
+        alt={bio?.name as string}
+        width={400}
+        height={400}
+        transition:name={`player-${bio?.id}`}
+      />
+    </div>
+    <div class='flex-1 self-start space-y-1'>
+      <h4 class='text-2xl font-bold'>{bio?.name}</h4>
+      <div class='flex flex-wrap gap-4 text-zinc-600 dark:text-zinc-400'>
+        <p class='text-sm font-medium'>
+          <span class='font-semibold'>Position:</span>
+          {bio?.position}
+        </p>
+        <p class='text-sm font-medium'>
+          <span class='font-semibold'>Team:</span>
+          {bio?.team}
+        </p>
+        <p class='text-sm font-medium'>
+          <span class='font-semibold'>Age:</span>
+          {bio?.age}
+        </p>
+        <p class='text-sm font-medium'>
+          <span class='font-semibold'>Nationality:</span>
+          {bio?.nationality}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

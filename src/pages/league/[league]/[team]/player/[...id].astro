@@ -1,7 +1,22 @@
 ---
+import { Image } from 'astro:assets'
 import Layout from '../../../../../layouts/Layout.astro'
+import BioCard from '@/components/Player/BioCard.astro'
+
+const { id } = Astro.params
+const bioMock = {
+  name: 'Haaland',
+  id: id as string,
+  age: '29',
+  nationality: 'Norway',
+  position: 'Attacker',
+  team: 'Manchester City',
+  photo: 'https://media.api-sports.io/football/players/1100.png'
+}
 ---
 
 <Layout title='Player Page'>
-  <p>Player Page</p>
+  <div class='w-full'>
+    <BioCard bio={bioMock} />
+  </div>
 </Layout>
