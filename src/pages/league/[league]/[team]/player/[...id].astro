@@ -1,7 +1,10 @@
 ---
-import { Image } from 'astro:assets'
 import Layout from '../../../../../layouts/Layout.astro'
 import BioCard from '@/components/Player/BioCard.astro'
+import ShotsCard from '@/components/Player/ShotsCard.astro'
+import GoalsCard from '@/components/Player/GoalsCard.astro'
+import ShotsToGoalsCard from '@/components/Player/ShotsToGoalsCard.astro'
+import OtherStatsCard from '@/components/Player/OtherStatsCard.astro'
 
 const { id } = Astro.params
 const bioMock = {
@@ -10,13 +13,62 @@ const bioMock = {
   age: '29',
   nationality: 'Norway',
   position: 'Attacker',
+  rating: 7.493333,
   team: 'Manchester City',
-  photo: 'https://media.api-sports.io/football/players/1100.png'
+  photo: 'https://media.api-sports.io/football/players/1100.png',
+  teamLogo: 'https://media.api-sports.io/football/teams/50.png',
+  height: '194 cm',
+  weight: '88 kg'
+}
+
+const shotsMock = {
+  shots: {
+    total: 49,
+    on: 31
+  }
+}
+
+const goalsMock = {
+  total: 14,
+  conceded: 0,
+  assists: 4,
+  saves: null
 }
 ---
 
 <Layout title='Player Page'>
-  <div class='w-full'>
+  <!-- FIRST LAYOUT IDEA -->
+  <!-- <div class='w-full'>
     <BioCard bio={bioMock} />
+  </div>
+  <div class='w-full grid md:grid-cols-3 gap-4'>
+    <div class='col-span-2 md:col-span-1'>
+      <ShotsCard shots={shotsMock.shots} />
+    </div>
+    <div class='col-span-2 md:col-span-1'>
+      <GoalsCard goals={goalsMock} />
+    </div>
+    <div class='col-span-2 md:col-span-1'>
+      <ShotsToGoalsCard
+        goals={goalsMock.total}
+        shots={shotsMock.shots.total}
+        onGoal={shotsMock.shots.on}
+      />
+    </div>
+    <div class='col-span-2'>
+      <OtherStatsCard />
+    </div>
+    <div
+      class='col-span-2 md:col-span-1 max-w-sm rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+    >
+    </div>
+  </div> -->
+
+  <!-- SECOND LAYOUT IDEA -->
+  <div class='grid md:grid-cols-3 gap-4'>
+    <div>
+      <BioCard bio={bioMock} />
+    </div>
+    <div class='bg-sky-100 md:col-span-2'>OTHER</div>
   </div>
 </Layout>

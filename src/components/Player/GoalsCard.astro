@@ -1,0 +1,39 @@
+---
+interface Props {
+  goals: {
+    total: number
+    conceded: number
+    assists: number
+    saves: number | null
+  }
+}
+
+const { goals } = Astro.props
+---
+
+<article
+  class='max-w-sm rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+>
+  <h4 class='text-lg md:text-2xl font-bold'>Goals</h4>
+  <div
+    class='w-full flex flex-col items-center justify-center gap-1 p-2 font-bold uppercase'
+  >
+    <span class='text-sm md:text-lg'>Total</span>
+
+    <span class='text-md md:text-xl'>{goals.total}</span>
+  </div>
+  <div class='w-full flex justify-between items-center'>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md font-semibold'>Conceded</span>
+      <span class='text-md md:text-lg'>{goals.conceded}</span>
+    </div>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md'>Assists</span>
+      <span class='text-md md:text-lg'>{goals.assists}</span>
+    </div>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md'>Saves</span>
+      <span class='text-md md:text-lg'>{goals.saves ? goals.saves : '-'}</span>
+    </div>
+  </div>
+</article>

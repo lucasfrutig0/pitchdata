@@ -1,0 +1,41 @@
+---
+import { calculateAccuracy } from '@/utils/calculateAccuracy'
+
+interface Props {
+  shots: {
+    total: number
+    on: number
+  }
+}
+
+const { shots } = Astro.props
+---
+
+<article
+  class='max-w-sm rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+>
+  <h4 class='text-lg md:text-2xl font-bold'>Shots</h4>
+  <div
+    class='w-full flex flex-col items-center justify-center gap-1 p-2 font-bold uppercase'
+  >
+    <span class='text-sm md:text-lg'>Accuracy</span>
+
+    <span class='text-md md:text-xl'
+      >{calculateAccuracy(shots.total, shots.on)}%</span
+    >
+  </div>
+  <div class='w-full flex justify-between items-center'>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md font-semibold'>Total</span>
+      <span class='text-md md:text-lg'>{shots.total}</span>
+    </div>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md'>On</span>
+      <span class='text-md md:text-lg'>{shots.on}</span>
+    </div>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md'>Out</span>
+      <span class='text-md md:text-lg'>{shots.total - shots.on}</span>
+    </div>
+  </div>
+</article>
