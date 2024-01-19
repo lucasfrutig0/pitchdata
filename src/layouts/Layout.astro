@@ -28,7 +28,7 @@ const { pathname } = Astro.url
     <div class='min-h-screen flex flex-col gap-2'>
       {
         pathname === '/' ? null : (
-          <div>
+          <div class='sticky top-0 left-0 backdrop-blur-md z-10'>
             <Topbar />
             <Hero />
           </div>
