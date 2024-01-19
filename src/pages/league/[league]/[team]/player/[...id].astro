@@ -1,7 +1,94 @@
 ---
 import Layout from '../../../../../layouts/Layout.astro'
+import BioCard from '@/components/Player/BioCard.astro'
+import Last3Matches from '@/components/Player/Last3Matches.astro'
+import NextMatch from '@/components/Player/NextMatch.astro'
+import OtherStatsCard from '@/components/Player/OtherStatsCard.astro'
+
+const { id } = Astro.params
+const bioMock = {
+  name: 'Haaland',
+  id: id as string,
+  age: '29',
+  nationality: 'Norway',
+  position: 'Attacker',
+  rating: 7.493333,
+  team: 'Manchester City',
+  photo: 'https://media.api-sports.io/football/players/1100.png',
+  teamLogo: 'https://media.api-sports.io/football/teams/50.png',
+  height: '194 cm',
+  weight: '88 kg'
+}
+
+const shotsMock = {
+  shots: {
+    total: 49,
+    on: 31
+  }
+}
+
+const goalsMock = {
+  total: 14,
+  conceded: 0,
+  assists: 4,
+  saves: null
+}
+
+const passesMock = {
+  total: 168,
+  key: 16,
+  accuracy: 8
+}
 ---
 
 <Layout title='Player Page'>
-  <p>Player Page</p>
+  <!-- FIRST LAYOUT IDEA -->
+  <!-- <div class='w-full'>
+    <BioCard bio={bioMock} />
+  </div>
+  <div class='w-full grid md:grid-cols-3 gap-4'>
+    <div class='col-span-2 md:col-span-1'>
+      <ShotsCard shots={shotsMock.shots} />
+    </div>
+    <div class='col-span-2 md:col-span-1'>
+      <GoalsCard goals={goalsMock} />
+    </div>
+    <div class='col-span-2 md:col-span-1'>
+      <ShotsToGoalsCard
+        goals={goalsMock.total}
+        shots={shotsMock.shots.total}
+        onGoal={shotsMock.shots.on}
+      />
+    </div>
+    <div class='col-span-2'>
+      <OtherStatsCard />
+    </div>
+    <div
+      class='col-span-2 md:col-span-1 max-w-sm rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+    >
+    </div>
+  </div> -->
+
+  <!-- SECOND LAYOUT IDEA -->
+  <div
+    class='py-4 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-4 space-y-4 md:space-y-0'
+  >
+    <div class='md:row-span-2'>
+      <BioCard bio={bioMock} />
+    </div>
+    <div class='md:row-span-2 md:col-span-2'>
+      <OtherStatsCard />
+    </div>
+  </div>
+
+  <div
+    class='w-full flex flex-col md:flex-row md:gap-x-4 items-center space-y-4 md:space-y-0'
+  >
+    <div class='w-full flex-1'>
+      <Last3Matches />
+    </div>
+    <div class='w-full md:w-auto'>
+      <NextMatch />
+    </div>
+  </div>
 </Layout>

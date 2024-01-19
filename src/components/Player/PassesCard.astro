@@ -1,0 +1,31 @@
+---
+interface Props {
+  passes: {
+    total: number
+    key: number
+    accuracy: number
+  }
+}
+
+const { passes } = Astro.props
+---
+
+<article
+  class='w-sm rounded-xl bg-zinc-100 dark:bg-accent-dark px-2 py-3 space-y-4 text-pretty'
+>
+  <h4 class='text-lg md:text-2xl font-bold'>Passes</h4>
+  <div class='w-full flex flex-col justify-between items-start'>
+    <div class='w-full flex-1 flex justify-between items-center'>
+      <span class='text-sm md:text-md font-semibold'>Total</span>
+      <span class='text-md md:text-lg'>{passes.total}</span>
+    </div>
+    <div class='w-full flex-1 flex justify-between items-center'>
+      <span class='text-sm md:text-md font-semibold'>Key</span>
+      <span class='text-md md:text-lg self-end'>{passes.key}</span>
+    </div>
+    <div class='w-full flex-1 flex justify-between items-center'>
+      <span class='text-sm md:text-md font-semibold'>Accuracy</span>
+      <span class='text-md md:text-lg'>{passes.accuracy}%</span>
+    </div>
+  </div>
+</article>

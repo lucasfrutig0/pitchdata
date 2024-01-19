@@ -1,0 +1,40 @@
+---
+import { calculateAverageShotsPerGoal } from '@/utils/calculateShotsToGoals'
+
+interface Props {
+  shots: number
+  goals: number
+  onGoal: number
+}
+
+const { shots, goals, onGoal } = Astro.props
+---
+
+<article
+  class='max-w-sm rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+>
+  <h4 class='text-lg md:text-2xl font-bold'>Shots Per Goals</h4>
+  <div
+    class='w-full flex flex-col items-center justify-center gap-1 p-2 font-bold uppercase'
+  >
+    <span class='text-sm md:text-lg'>Average</span>
+
+    <span class='text-md md:text-xl'
+      >{calculateAverageShotsPerGoal(shots, goals)}</span
+    >
+  </div>
+  <div class='w-full flex justify-between items-center'>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md font-semibold'>Shots</span>
+      <span class='text-md md:text-lg'>{shots ? shots : '-'}</span>
+    </div>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md font-semibold'>On Goal</span>
+      <span class='text-md md:text-lg'>{onGoal ? onGoal : '-'}</span>
+    </div>
+    <div class='flex-1 flex flex-col gap-y-2 items-center'>
+      <span class='text-sm md:text-md font-semibold'>Goals</span>
+      <span class='text-md md:text-lg'>{goals ? goals : '-'}</span>
+    </div>
+  </div>
+</article>

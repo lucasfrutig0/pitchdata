@@ -1,0 +1,75 @@
+---
+import DribblesCard from './DribblesCard.astro'
+import DuelsCard from './DuelsCard.astro'
+import GoalsCards from './GoalsCards.astro'
+import PassesCard from './PassesCard.astro'
+import ShotsCard from './ShotsCard.astro'
+import TacklesCard from './TacklesCard.astro'
+const shotsMock = {
+  shots: {
+    total: 49,
+    on: 31
+  }
+}
+
+const goalsMock = {
+  total: 14,
+  conceded: 0,
+  assists: 4,
+  saves: null
+}
+
+const passesMock = {
+  total: 168,
+  key: 16,
+  accuracy: 8
+}
+
+const tacklesMock = {
+  total: 3,
+  blocks: 1,
+  interceptions: 1
+}
+
+const dribblesMock = {
+  attempts: 11,
+  success: 6,
+  past: null
+}
+
+const duelsMock = {
+  total: 88,
+  won: 44
+}
+---
+
+<article class='w-full space-y-4'>
+  <!-- <h4 class='text-lg md:text-2xl font-bold'>Other Stats</h4> -->
+
+  <div
+    class='md:grid md:grid-cols-subgrid gap-4 md:col-span-3 space-y-4 md:space-y-0'
+  >
+    <div class='col-start-1'>
+      <ShotsCard shots={shotsMock.shots} />
+    </div>
+    <div class='col-start-2'>
+      <GoalsCards goals={goalsMock} />
+    </div>
+    <div class='col-start-3'>
+      <PassesCard passes={passesMock} />
+    </div>
+  </div>
+  <div
+    class='md:grid md:grid-cols-subgrid md:gap-4 md:col-span-3 space-y-4 md:space-y-0'
+  >
+    <div class='col-start-1'>
+      <TacklesCard tackles={tacklesMock} />
+    </div>
+    <div class='col-start-2'>
+      <DribblesCard dribbles={dribblesMock} />
+    </div>
+    <div class='col-start-3'>
+      <DuelsCard duels={duelsMock} />
+    </div>
+  </div>
+</article>

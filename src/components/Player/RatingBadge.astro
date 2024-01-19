@@ -1,0 +1,36 @@
+---
+const { rating } = Astro.props
+
+const ratingClasses = {
+  bg: '',
+  text: '',
+  ring: ''
+}
+function className() {
+  if (rating >= 0 && rating <= 3.9) {
+    ratingClasses.bg = 'bg-red-50'
+    ratingClasses.text = 'text-red-700'
+    ratingClasses.ring = 'ring-red-600/20'
+  } else if (rating >= 3.9 && rating < 6.9) {
+    ratingClasses.bg = 'bg-yellow-50'
+    ratingClasses.text = 'text-yellow-700'
+    ratingClasses.ring = 'ring-yellow-600/20'
+  } else if (rating >= 7.0) {
+    ratingClasses.bg = 'bg-green-50'
+    ratingClasses.text = 'text-green-700'
+    ratingClasses.ring = 'ring-green-600/20'
+  }
+}
+
+if (rating) {
+  className()
+}
+---
+
+<span class='inline-flex items-center pl-4' title='Rating'>
+  <span class='sr-only'>Rating</span>
+  <span
+    class={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${ratingClasses.bg} ${ratingClasses.text} ${ratingClasses.ring}`}
+    >{rating.toFixed(1)}</span
+  >
+</span>

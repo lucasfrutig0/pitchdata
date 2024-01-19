@@ -1,0 +1,34 @@
+---
+import { calculateAccuracy } from '@/utils/calculateAccuracy'
+
+interface Props {
+  duels: {
+    total: number
+    won: number
+  }
+}
+
+const { duels } = Astro.props
+---
+
+<article
+  class='w-sm text-pretty rounded-xl bg-zinc-100 dark:bg-accent-dark px-2 py-3 space-y-4'
+>
+  <h4 class='text-lg md:text-2xl font-bold'>Duels</h4>
+  <div class='w-full flex flex-col justify-between items-start'>
+    <div class='w-full flex-1 flex justify-between items-center'>
+      <span class='text-sm md:text-md font-semibold'>Total</span>
+      <span class='text-md md:text-lg'>{duels.total}</span>
+    </div>
+    <div class='w-full flex-1 flex justify-between items-center'>
+      <span class='text-sm md:text-md font-semibold'>Won</span>
+      <span class='text-md md:text-lg self-end'>{duels.won}</span>
+    </div>
+    <div class='w-full flex-1 flex justify-between items-center'>
+      <span class='text-sm md:text-md font-semibold'>Accuaracy</span>
+      <span class='text-md md:text-lg'
+        >{calculateAccuracy(duels.total, duels.won)}%</span
+      >
+    </div>
+  </div>
+</article>
