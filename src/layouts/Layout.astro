@@ -23,14 +23,13 @@ const { pathname } = Astro.url
     <ViewTransitions />
   </head>
   <body
-    class='min-h-screen relative antialiased overflow-x-hidden text-soft-dark dark:text-ivory dark:bg-dark bg-white'
+    class='min-h-screen w-full relative antialiased overflow-x-hidden text-soft-dark dark:text-ivory dark:bg-dark bg-white'
   >
-    <div class='min-h-screen flex flex-col gap-2'>
+    <div class='min-h-screen w-full flex flex-col gap-2'>
       {
         pathname === '/' ? null : (
           <div class='sticky top-0 left-0 backdrop-blur-md z-10'>
             <Topbar />
-            <Hero />
           </div>
         )
       }
