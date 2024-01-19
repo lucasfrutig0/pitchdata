@@ -2,6 +2,7 @@
 import Layout from '../../../../../layouts/Layout.astro'
 import BioCard from '@/components/Player/BioCard.astro'
 import Last3Matches from '@/components/Player/Last3Matches.astro'
+import NextMatch from '@/components/Player/NextMatch.astro'
 import OtherStatsCard from '@/components/Player/OtherStatsCard.astro'
 
 const { id } = Astro.params
@@ -80,10 +81,14 @@ const passesMock = {
     </div>
   </div>
 
-  <div class='w-full flex flex-col md:flex-row md:gap-x-4 items-center'>
+  <div
+    class='w-full flex flex-col md:flex-row md:gap-x-4 items-center space-y-4 md:space-y-0'
+  >
     <div class='w-full flex-1'>
       <Last3Matches />
     </div>
-    <div>Next Game</div>
+    <div class='w-full md:w-auto'>
+      <NextMatch />
+    </div>
   </div>
 </Layout>
