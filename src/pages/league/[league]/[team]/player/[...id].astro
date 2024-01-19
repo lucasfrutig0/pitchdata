@@ -1,9 +1,7 @@
 ---
 import Layout from '../../../../../layouts/Layout.astro'
 import BioCard from '@/components/Player/BioCard.astro'
-import ShotsCard from '@/components/Player/ShotsCard.astro'
-import GoalsCard from '@/components/Player/GoalsCard.astro'
-import ShotsToGoalsCard from '@/components/Player/ShotsToGoalsCard.astro'
+import Last3Matches from '@/components/Player/Last3Matches.astro'
 import OtherStatsCard from '@/components/Player/OtherStatsCard.astro'
 
 const { id } = Astro.params
@@ -33,6 +31,12 @@ const goalsMock = {
   conceded: 0,
   assists: 4,
   saves: null
+}
+
+const passesMock = {
+  total: 168,
+  key: 16,
+  accuracy: 8
 }
 ---
 
@@ -65,10 +69,21 @@ const goalsMock = {
   </div> -->
 
   <!-- SECOND LAYOUT IDEA -->
-  <div class='grid md:grid-cols-3 gap-4'>
-    <div>
+  <div
+    class='py-4 md:grid md:grid-cols-3 md:grid-rows-2 md:gap-4 space-y-4 md:space-y-0'
+  >
+    <div class='md:row-span-2'>
       <BioCard bio={bioMock} />
     </div>
-    <div class='bg-sky-100 md:col-span-2'>OTHER</div>
+    <div class='md:row-span-2 md:col-span-2'>
+      <OtherStatsCard />
+    </div>
+  </div>
+
+  <div class='w-full flex flex-col md:flex-row md:gap-x-4 items-center'>
+    <div class='w-full flex-1'>
+      <Last3Matches />
+    </div>
+    <div>Next Game</div>
   </div>
 </Layout>

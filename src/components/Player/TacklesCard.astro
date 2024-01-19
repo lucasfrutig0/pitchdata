@@ -2,31 +2,34 @@
 import { calculateAccuracy } from '@/utils/calculateAccuracy'
 
 interface Props {
-  shots: {
+  tackles: {
     total: number
-    on: number
+    blocks: number
+    interceptions: number
   }
 }
 
-const { shots } = Astro.props
+const { tackles } = Astro.props
 ---
 
 <article
   class='w-sm text-pretty rounded-xl bg-zinc-100 dark:bg-accent-dark px-2 py-3 space-y-4'
 >
-  <h4 class='text-lg md:text-2xl font-bold'>Shots</h4>
+  <h4 class='text-lg md:text-2xl font-bold'>Tackles</h4>
   <div class='w-full flex flex-col justify-between items-start'>
     <div class='w-full flex-1 flex justify-between items-center'>
       <span class='text-sm md:text-md font-semibold'>Total</span>
-      <span class='text-md md:text-lg'>{shots.total}</span>
+      <span class='text-md md:text-lg'>{tackles.total}</span>
     </div>
     <div class='w-full flex-1 flex justify-between items-center'>
-      <span class='text-sm md:text-md font-semibold'>On</span>
-      <span class='text-md md:text-lg self-end'>{shots.on}</span>
+      <span class='text-sm md:text-md font-semibold'>Blocks</span>
+      <span class='text-md md:text-lg self-end'>{tackles.blocks}</span>
     </div>
     <div class='w-full flex-1 flex justify-between items-center'>
-      <span class='text-sm md:text-md font-semibold'>Out</span>
-      <span class='text-md md:text-lg'>{shots.total - shots.on}</span>
+      <span class='text-sm md:text-md font-semibold text-balance'
+        >Interceptions</span
+      >
+      <span class='text-md md:text-lg'>{tackles.interceptions}</span>
     </div>
   </div>
 </article>
