@@ -1,12 +1,10 @@
 ---
 // import { standings } from '@/utils/data/standings'
-import { leagues } from '@/utils/data/leagues'
+
 import LastGames from './LastGames.astro'
-import { fetchData } from '@/lib/api-football/apifootball'
-import type { StandingsData } from '@/@types/standings'
 
 const { league } = Astro.params
-const leagueId = leagues.find((l) => l.slug === league)?.id
+// const leagueId = leagues.find((l) => l.slug === league)?.id
 const { url } = Astro
 
 const { origin } = url
