@@ -1,4 +1,6 @@
-export const fetchData = async (season: number, id: number) => {
+import type { StandingsData } from '@/@types/standings'
+
+export const getStandingsByLeagueId = async (season: number, id: number) => {
   try {
     const response = await fetch(
       'https://v3.football.api-sports.io/standings?league=' +
@@ -17,7 +19,10 @@ export const fetchData = async (season: number, id: number) => {
       throw new Error(`${response.status} ${response.statusText}`)
     }
     // use response here if we didn't throw above
-    return await response.json()
+    const data = await response.json()
+    const standings = (await data.response[0].league
+      .standings[0]) as unknown as StandingsData
+    return standings
   } catch (error) {
     console.error(error)
   }

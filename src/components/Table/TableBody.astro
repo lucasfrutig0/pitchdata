@@ -1,37 +1,18 @@
 ---
-// import { standings } from '@/utils/data/standings'
+import { dataStandings } from '@/utils/data/standings'
 
 import type { Standing } from '@/@types/standings'
 
 import LastGames from './LastGames.astro'
-import { GET } from '@/pages/api/stands'
+// import { GET } from '@/pages/api/stands'
 
-const { league } = Astro.params
-// const leagueId = leagues.find((l) => l.slug === league)?.id
-const { url } = Astro
-
-const { origin } = url
-
-// const standingsAPI = await fetch(origin + '/api/standings/' + league).then(
-//   (res) => res.json()
-// )
-
-// console.log('DATA', standingsAPI.league)
-let response = await GET(Astro)
-const data = await response.json()
-console.log('API', data)
-
-// const data = await fetch(
-//   '/api/standings/' + window.location.pathname.split('/')[2]
-// ).then((response) => response.json())
-// console.log('DATA', data)
-// const standingsAPI = data.response[0].league.standings[0] as StandingsData
+// let response = await GET(Astro)
+// const data = await response.json()
 ---
 
 <tbody>
-  {JSON.stringify(data)}
   {
-    data.league.map((team: Standing) => (
+    dataStandings.map((team: Standing) => (
       <tr
         class={`text-right ${
           team.description?.includes('Promotion')
