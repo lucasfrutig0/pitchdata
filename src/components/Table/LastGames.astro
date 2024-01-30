@@ -1,0 +1,27 @@
+---
+interface Props {
+  resultMatchLegend: string
+}
+
+const { resultMatchLegend } = Astro.props
+
+const classNames = (letter: string) => {
+  if (letter === 'W') {
+    return 'bg-green-500'
+  } else if (letter === 'D') {
+    return 'bg-zinc-500'
+  } else {
+    return 'bg-red-500'
+  }
+}
+---
+
+<div class='flex gap-1'>
+  {
+    resultMatchLegend
+      .split('')
+      .map((letter) => (
+        <div class={`w-2 h-2 rounded-full ${classNames(letter)}`} />
+      ))
+  }
+</div>

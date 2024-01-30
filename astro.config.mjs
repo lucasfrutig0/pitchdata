@@ -13,5 +13,5 @@ export default defineConfig({
     react()
   ],
   output: 'server',
-  adapter: cloudflare()
+  adapter: cloudflare({ imageService: 'cloudflare' })
 })

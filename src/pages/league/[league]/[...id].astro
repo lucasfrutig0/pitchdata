@@ -1,19 +1,19 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import type { GetStaticPaths } from 'astro'
-import { leagues } from '@/utils/data/leagues'
 import '@/styles/globals.css'
-import { LeagueTable } from '@/components/TableLeague'
 import { UpcomingFixtures } from '@/components/UpcomingFixtures'
 import TopCard from '@/components/TopCards/TopCard.astro'
+import Table from '@/components/Table/Table.astro'
 const { league } = Astro.params
+// try render partial html for table(standings)
 ---
 
 <Layout title={league as string}>
   <div
-    class='flex justify-center md:justify-between items-center flex-wrap gap-4'
+    class='flex justify-center md:justify-between items-center flex-wrap gap-x-4'
   >
     <TopCard
+      id='1100'
       team='Manchester City'
       pos='ST'
       name='Earling Haaland'
@@ -23,30 +23,34 @@ const { league } = Astro.params
     />
 
     <TopCard
+      id='306'
       team='Manchester City'
       pos='ST'
-      link={`/league/${league}/manchester-city/player/1100`}
-      name='Earling Haaland'
-      title='Top Assist'
-      src='https://media.api-sports.io/football/players/1100.png'
+      link={`/league/${league}/liverpool/player/1100`}
+      name='Mohamed Salah'
+      title='Top Assists'
+      src='https://media.api-sports.io/football/players/306.png'
     />
 
     <TopCard
-      team='Manchester City'
-      pos='ST'
+      id='18968'
+      team='Tottenham'
+      pos='MC'
       link={`/league/${league}/manchester-city/player/1100`}
-      name='Earling Haaland'
+      name='Y. Bissouma'
       title='Top Red Cards'
-      src='https://media.api-sports.io/football/players/1100.png'
+      src='https://media.api-sports.io/football/players/18968.png'
     />
   </div>
 
   <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
     <section class='md:col-span-2 space-y-4'>
-      <LeagueTable client:load />
-      <p class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'>
-        BOSTA
-      </p>
+      <!-- <LeagueTable client:only='react' /> -->
+      <div
+        class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+      >
+        <Table />
+      </div>
     </section>
 
     <article class='md:col-span-1'>

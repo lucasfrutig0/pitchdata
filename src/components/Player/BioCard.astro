@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets'
+// import RatingBadge from './RatingBadge.astro'
+import { nameToFlag } from '@/utils/data/nameToFlag'
+interface Props {
+  bio?: {
+    name: string
+    id: string
+    age: string
+    nationality: string
+    position: string
+    team: string
+    photo: string
+    rating: number
+    teamLogo: string
+    height: string
+    weight: string
+  }
+}
+const { bio } = Astro.props
+
+const flag = nameToFlag(bio?.nationality as string) as string
+---
+
+<article
+  class='text-pretty rounded-xl bg-zinc-100 dark:bg-accent-dark space-y-4'
+>
+  <header
+    class='rounded-t-xl w-full flex items-center gap-x-3 bg-gradient-to-tl from-zinc-100 via-zinc-50 to-white dark:from-accent-dark dark:via-soft-dark dark:to-dark px-6 py-4'
+  >
+    <Image
+      src='https://media.api-sports.io/football/players/1100.png'
+      class={'shadow-lg w-20 h-20 flex-shrink-0 rounded-full object-cover drop-shadow-lg shadow-b'}
+      alt={bio?.name as string}
+      width={400}
+      height={400}
+      transition:name={`player-${bio?.id}`}
+    />
+    <div class='flex-1 flex flex-col gap-2'>
+      <h1 class='text-balance text-2xl font-bold leading-6 self-start'>
+        {bio?.name}
+      </h1>
+      <div
+        class='flex flex-col-reverse text-xs text-zinc-700 dark:text-zinc-400'
+      >
+        <div class='flex flex-wrap gap-x-2 items-center space-y-1'>
+          <span>
+            <span class='font-semibold text-zinc-900 dark:text-zinc-200'
+              >Age:</span
+            >
+            {bio?.age}</span
+          >
+          <span>
+            <span class='font-semibold text-zinc-900 dark:text-zinc-200'
+              >Height:</span
+            >
+            {bio?.height}</span
+          >
+          <span>
+            <span class='font-semibold text-zinc-900 dark:text-zinc-200'
+              >Weight:</span
+            >
+            {bio?.weight}</span
+          >
+        </div>
+        <div class='flex flex-col gap-x-4 items-start'>
+          <span class='inline-flex items-center gap-x-2'>
+            <span class='font-semibold text-zinc-900 dark:text-zinc-200'
+              >Nationality:</span
+            >
+            <Image
+              src={flag}
+              alt={bio?.nationality as string}
+              title={bio?.nationality as string}
+              width='200'
+              height='150'
+              class='w-4 h-4 object-cover'
+            />
+          </span>
+
+          <span class='inline-flex items-center gap-x-2'>
+            <span class='font-semibold text-zinc-900 dark:text-zinc-200'
+              >Team:</span
+            >
+            <Image
+              src={bio?.teamLogo as string}
+              alt={bio?.team as string}
+              title={bio?.team as string}
+              width='200'
+              height='150'
+              class='w-4 h-4 object-cover'
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class='px-6 md:py-4 text-pretty'>
+    <section
+      class='text-xl font-medium text-zinc-500 dark:text-zinc-400 grid grid-cols-1 place-content-center divide-y divide-slate-900/25 dark:divide-slate-50/45'
+    >
+      <div class='flex flex-col justify-center items-center py-3'>
+        <span class='font-semibold text-sm'>Position:</span>
+        <span class='text-balance text-2xl text-zinc-900 dark:text-zinc-50'>
+          {bio?.position}
+        </span>
+      </div>
+
+      <div class='flex flex-col justify-center items-center py-4'>
+        <span class='font-semibold text-sm'>Rating:</span>
+        <span class='text-balance text-3xl text-zinc-900 dark:text-zinc-50'>
+          {Number(bio?.rating.toFixed(1))}
+        </span>
+      </div>
+    </section>
+  </main>
+</article>

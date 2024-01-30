@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets'
+
+const mockFixture = {
+  fixture: {
+    id: 1035393,
+    referee: null,
+    timezone: 'UTC',
+    date: '2024-01-31T19:30:00+00:00',
+    timestamp: 1706729400,
+    periods: {
+      first: null,
+      second: null
+    },
+    venue: {
+      id: 555,
+      name: 'Etihad Stadium',
+      city: 'Manchester'
+    },
+    status: {
+      long: 'Not Started',
+      short: 'NS',
+      elapsed: null
+    }
+  },
+  league: {
+    id: 39,
+    name: 'Premier League',
+    country: 'England',
+    logo: 'https://media.api-sports.io/football/leagues/39.png',
+    flag: 'https://media.api-sports.io/flags/gb.svg',
+    season: 2023,
+    round: 'Regular Season - 22'
+  },
+  teams: {
+    home: {
+      id: 50,
+      name: 'Manchester City',
+      logo: 'https://media.api-sports.io/football/teams/50.png',
+      winner: null
+    },
+    away: {
+      id: 44,
+      name: 'Burnley',
+      logo: 'https://media.api-sports.io/football/teams/44.png',
+      winner: null
+    }
+  },
+  goals: {
+    home: null,
+    away: null
+  },
+  score: {
+    halftime: {
+      home: null,
+      away: null
+    },
+    fulltime: {
+      home: null,
+      away: null
+    },
+    extratime: {
+      home: null,
+      away: null
+    },
+    penalty: {
+      home: null,
+      away: null
+    }
+  }
+}
+---
+
+<article
+  class='w-full text-pretty rounded-xl bg-zinc-100 dark:bg-accent-dark px-2 py-3 space-y-4'
+>
+  <h4 class='text-lg md:text-2xl font-bold'>Upcoming Match</h4>
+  <div
+    class='flex flex-col bg-white/50 dark:bg-dark/50 p-2 shadow dark:shadow-black/50'
+  >
+    <span class='text-xs text-center p-0 m-0'
+      >{new Date(mockFixture.fixture.date).toLocaleDateString('pt-BR')}</span
+    >
+    <div class='w-full max-w-lg flex justify-between items-center'>
+      <div class='flex gap-x-4 items-center justify-center'>
+        <Image
+          src={mockFixture.teams.home.logo}
+          width={40}
+          height={40}
+          class='self-end w-9 h-9'
+          alt={mockFixture.teams.home.name}
+        />
+        <span class='text-lg md:text-xl'> 0</span>
+      </div>
+
+      <span>x</span>
+
+      <div class='flex gap-x-4 items-center justify-center'>
+        <span class='text-lg md:text-xl'> 0</span>
+        <Image
+          src={mockFixture.teams.away.logo}
+          width={40}
+          height={40}
+          class='self-end w-9 h-9'
+          alt={mockFixture.teams.away.name}
+        />
+      </div>
+    </div>
+    <div
+      class='text-center p-2 flex flex-col gap-1 bg-white/50 dark:bg-dark/50'
+    >
+      <span>{mockFixture.fixture.venue.city}</span>
+      <span class='font-medium'>{mockFixture.fixture.venue.name}</span>
+    </div>
+  </div>
+</article>

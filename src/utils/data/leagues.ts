@@ -7,21 +7,21 @@ export const leagues = [
     logo: '/images/pl.png'
   },
   {
-    id: 2,
+    id: 135,
     name: 'Serie A',
     code: 'SA',
     slug: 'serie-a',
     logo: '/images/seriea.png'
   },
   {
-    id: 3,
+    id: 140,
     name: 'La Liga',
     code: 'LL',
     slug: 'la-liga',
     logo: '/images/laliga.svg'
   },
   {
-    id: 4,
+    id: 2,
     name: 'Champions League',
     code: 'CL',
     slug: 'champions-league',
