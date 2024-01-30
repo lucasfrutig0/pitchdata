@@ -1,0 +1,14 @@
+---
+import TableBody from './TableBody.astro'
+import TableHead from './TableHead.astro'
+---
+
+<article class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'>
+  <h4 class='text-md md:text-xl font-bold'>Standings</h4>
+  <div class='overflow-x-auto'>
+    <table class='w-full table-auto'>
+      <TableHead />
+      <TableBody />
+    </table>
+  </div>
+</article>

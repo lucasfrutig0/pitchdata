@@ -1,10 +1,34 @@
 ---
+// import type { League } from '@/@types/league'
+import { leagues } from '@/utils/data/leagues'
+// import { Image } from 'astro:assets'
 
+const { league } = Astro.params
+
+const leagueSelected = leagues.find((l) => l.slug === league)
+
+console.log('DATA', leagueSelected)
 ---
 
-<section class='w-full'>
-  <div
-    class='container mx-auto rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
-  >
+<section
+  class='w-full bg-gradient-to-tl from-zinc-100 via-zinc-50 to-white dark:from-accent-dark dark:via-soft-dark dark:to-dark p-6'
+>
+  <div class='container mx-auto rounded-xl'>
+    <div class='flex items-center gap-x-2'>
+      <img
+        src={leagueSelected?.logo as string}
+        alt={leagueSelected?.name as string}
+        width={500}
+        height={500}
+        class='bg-zinc-50 inline-block h-16 w-16 rounded-full ring-2 dark:ring-zinc-400 ring-zinc-700'
+      />
+      <div>
+        <h3 class='text-lg md:text-3xl leading-6'>{leagueSelected?.name}</h3>
+        <span class='font-semibold text-sm'
+          >Season: <span class='text-soft-dark dark:text-ivory'>2023/24</span
+          ></span
+        >
+      </div>
+    </div>
   </div>
 </section>

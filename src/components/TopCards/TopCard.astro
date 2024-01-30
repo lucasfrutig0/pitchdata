@@ -14,22 +14,31 @@ console.log(name.split(' ').join('-').toLowerCase())
 ---
 
 <article
-  class='w-[350px] rounded-xl bg-zinc-100 dark:bg-accent-dark px-6 py-4 space-y-4'
+  class='w-[350px] bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 rounded-xl p-1'
 >
-  <h4 class='text-md md:text-xl font-bold'>{title}</h4>
+  <div
+    class='bg-zinc-100 dark:bg-accent-dark h-full w-full px-6 py-4 rounded-xl space-y-4'
+  >
+    <h4 class='text-md md:text-xl font-bold'>{title}</h4>
 
-  <div class='flex gap-x-4 gap-y-2'>
-    <img
-      src={src}
-      alt={title}
-      class='w-20 h-20 flex-shrink-0 rounded-md shadow-lg object-cover'
-      transition:name={`player-${id}`}
-    />
-    <div class='flex-1 flex flex-col'>
-      <a class='text-lg font-bold leading-6' href={link}>{name}</a>
-      <span class='text-md font-semibold'>{pos}</span>
-      <span>{team}</span>
-      <span class='self-end text-5xl font-bold'>14</span>
+    <div class='flex gap-x-4 gap-y-2'>
+      <img
+        src={src}
+        alt={title}
+        class='w-20 h-20 flex-shrink-0 rounded-md shadow-lg object-cover'
+        transition:name={`player-${id}`}
+      />
+      <div class='flex-1 flex flex-col'>
+        <a class='text-lg font-bold leading-6' href={link}>{name}</a>
+        <span class='text-md font-semibold'>{pos}</span>
+        <span>{team}</span>
+        <!-- <span class='self-end text-5xl font-bold'>14</span> -->
+        <h1
+          class='text-5xl self-end font-bold bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 inline-block text-transparent bg-clip-text'
+        >
+          14
+        </h1>
+      </div>
     </div>
   </div>
 </article>

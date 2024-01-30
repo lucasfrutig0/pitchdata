@@ -3,19 +3,13 @@ import { Select } from './Select'
 
 import { Sidebar } from './Sidebar'
 import { SwitchThemeButton } from './SwitchThemeButton'
-const { league } = Astro.params
-const leagueName = league?.replace('-', ' ').toUpperCase()
+// const { league } = Astro.params
+// const leagueName = league?.replace('-', ' ').toUpperCase()
 ---
 
-<header class='w-full'>
+<header class='w-full border-b border-soft-dark/30 dark:border-zinc-50/30'>
   <div class='container mx-auto px-6 w-full flex items-center justify-between'>
     <Sidebar client:load />
-
-    <span
-      class='px-6 w-full text-sm md:text-lg font-bold text-dark dark:text-ivory'
-    >
-      {leagueName}
-    </span>
     <div class='w-full flex justify-between md:justify-end items-center h-14'>
       <div class='flex gap-x-4 items-center justify-center'>
         <Select client:only transition:persist />
