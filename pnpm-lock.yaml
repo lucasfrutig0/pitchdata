@@ -41,6 +41,9 @@ dependencies:
   astro:
     specifier: ^4.1.3
     version: 4.1.3(typescript@5.3.3)
+  astro-htmx:
+    specifier: ^1.0.5
+    version: 1.0.5(astro@4.1.3)(htmx.org@1.9.10)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -50,6 +53,9 @@ dependencies:
   embla-carousel-react:
     specifier: 8.0.0-rc19
     version: 8.0.0-rc19(react@18.2.0)
+  htmx.org:
+    specifier: ^1.9.10
+    version: 1.9.10
   lucide-react:
     specifier: ^0.309.0
     version: 0.309.0(react@18.2.0)
@@ -2119,6 +2125,16 @@ packages:
       - supports-color
     dev: true
 
+  /astro-htmx@1.0.5(astro@4.1.3)(htmx.org@1.9.10):
+    resolution: {integrity: sha512-lTwGy5sMyvp6+O6UiSQEXrEWimRpPi16mMBbQTWUshWrGklCpYbtho6eaZVonFcB9ue7Y7FjTTPiYfp0hUUEuQ==}
+    peerDependencies:
+      astro: '>= 3.0.0'
+      htmx.org: '>= 1.9.0'
+    dependencies:
+      astro: 4.1.3(typescript@5.3.3)
+      htmx.org: 1.9.10
+    dev: false
+
   /astro@4.1.3(typescript@5.3.3):
     resolution: {integrity: sha512-9i8l0mEnpAOAi9F3DMkHGaZ4q56TGtt71XaAxhPXAlhZrVR/6ruobCyYdYwL1Fo0ATpuGXdaod1I7FFxFMcQbw==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
@@ -3669,6 +3685,10 @@ packages:
 
   /html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
+    dev: false
+
+  /htmx.org@1.9.10:
+    resolution: {integrity: sha512-UgchasltTCrTuU2DQLom3ohHrBvwr7OqpwyAVJ9VxtNBng4XKkVsqrv0Qr3srqvM9ZNI3f1MmvVQQqK7KW/bTA==}
     dev: false
 
   /http-cache-semantics@4.1.1:

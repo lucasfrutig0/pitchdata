@@ -6,8 +6,6 @@ import { leagues } from '@/utils/data/leagues'
 const { league } = Astro.params
 
 const leagueSelected = leagues.find((l) => l.slug === league)
-
-console.log('DATA', leagueSelected)
 ---
 
 <section
