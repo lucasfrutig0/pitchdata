@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { AwayTeam } from './AwayTeam'
 import { FixtureInfo } from './FixtureInfo'
 import { HomeTeam } from './HomeTeam'

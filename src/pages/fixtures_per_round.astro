@@ -1,0 +1,23 @@
+---
+import { loadFixturesPerRound } from '@/lib/api-football/apifootball'
+const data = await loadFixturesPerRound(2023, 39, '1')
+console.log('data fixtures per round', data)
+
+export const partial = true
+---
+
+<li>item 1</li>
+<li>item 2</li>
+<li>item 3</li>
+<li>item 4</li>
+<li>item 5</li>
+<li>item 6</li>
+
+<!-- 
+<article
+  class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-2 md:px-6 py-4 space-y-4'
+>
+  <h4 class='text-md md:text-xl font-bold'>Fixtures</h4>
+
+  <CarouselFixtures currentRound={currentRound} allRounds={allRounds} />
+</article> -->

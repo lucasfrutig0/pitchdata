@@ -4,27 +4,31 @@ export const leagues = [
     name: 'Premier League',
     code: 'PL',
     slug: 'premier-league',
-    logo: '/images/pl.png'
+    logo: '/images/pl.png',
+    rounds: 38
   },
   {
     id: 135,
     name: 'Serie A',
     code: 'SA',
     slug: 'serie-a',
-    logo: '/images/seriea.png'
+    logo: '/images/seriea.png',
+    rounds: 38
   },
   {
     id: 140,
     name: 'La Liga',
     code: 'LL',
     slug: 'la-liga',
-    logo: '/images/laliga.svg'
+    logo: '/images/laliga.svg',
+    rounds: 38
   },
   {
     id: 2,
     name: 'Champions League',
     code: 'CL',
     slug: 'champions-league',
-    logo: '/images/champions.png'
+    logo: '/images/champions.png',
+    rounds: 38
   }
 ]

@@ -4,8 +4,16 @@ import '@/styles/globals.css'
 import { UpcomingFixtures } from '@/components/UpcomingFixtures'
 import TopCard from '@/components/TopCards/TopCard.astro'
 import Table from '@/components/Table/Table.astro'
+import {
+  getAllRounds,
+  getCurrentLeaguetRound
+} from '@/lib/api-football/apifootball'
+import { leagues } from '@/utils/data/leagues'
 const { league } = Astro.params
-// try render partial html for table(standings)
+const leagueID = leagues.find((l) => l.slug === league)?.id
+
+const currentRound = await getCurrentLeaguetRound(2023, leagueID!)
+const allRounds = getAllRounds(league as string)
 ---
 
 <Layout title={league as string}>
@@ -54,7 +62,20 @@ const { league } = Astro.params
     </section>
 
     <article class='md:col-span-1'>
-      <UpcomingFixtures client:load />
+      <div
+        class='rounded-xl bg-zinc-100 dark:bg-accent-dark px-2 md:px-6 py-4 space-y-4'
+      >
+        <h4 class='text-md md:text-xl font-bold'>Fixtures</h4>
+        <div>
+          <p hx-get='/fixtures_per_round' hx-trigger='load'>ALOHA</p>
+          <ul id='fixturesPerRound'></ul>
+        </div>
+      </div>
+      <!-- <UpcomingFixtures
+        client:load
+        currentRound={currentRound}
+        allRounds={allRounds!}
+      /> -->
     </article>
   </div>
 </Layout>

@@ -9,18 +9,18 @@ import {
 import { type CarouselApi } from '@/components/ui/carousel'
 import { Fixtures } from './FIxtures'
 import { roundsData } from '@/utils/data/rounds'
+import { loadFixturesPerRound } from '@/lib/api-football/apifootball'
 
-// const data = await fetch(
-//   '/api/rounds/' + window.location.pathname.split('/')[2]
-// ).then((response) => response.json())
+interface CarouselProps {
+  currentRound: number
+  allRounds: number
+}
 
-// const currentRound = data.rounds[0].match(/\d+/g)![0]
-const currentRound = 21
-
-export function CarouselFixtures() {
+export function CarouselFixtures({ currentRound, allRounds }: CarouselProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [rounds, setRounds] = useState<number>(0)
   const [current, setCurrent] = useState(0)
+  const totalRounds = new Array(allRounds).fill(0).map((_, i) => i + 1)
 
   useEffect(() => {
     if (!api) {
@@ -67,7 +67,7 @@ export function CarouselFixtures() {
         <CarouselNext className='mr-8 mt-10' onClick={scrollNext} />
       </div>
       <CarouselContent className='mt-14'>
-        {roundsData.map((round) => (
+        {totalRounds.map((round) => (
           <CarouselItem className='space-y-4' key={round}>
             <Fixtures />
           </CarouselItem>
